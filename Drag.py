@@ -29,6 +29,7 @@ def upload_data():
             
             if df is not None:
                 merged_df = pd.concat([merged_df, df], ignore_index=True)
+                merged_df.drop_duplicates(inplace=True) # remove duplicate values
         
         if not merged_df.empty:
             merged_df.drop_duplicates(inplace=True)  # Remove duplicates from the merged DataFrame
