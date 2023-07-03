@@ -12,6 +12,8 @@ def process_uploaded_file(uploaded_file):
         df = pd.read_excel(uploaded_file, engine='openpyxl')
     else:
         return None
+        
+    df.drop_duplicates(inplace=True) # remove duplicate values
     
     return df
 
