@@ -55,6 +55,7 @@ def upload_data():
 
                 min_row_styled = min_row.style.apply(lambda x: ['background-color: black; color: white'] * len(x), axis=0)
                 st.header("Minimum price in USD")
+                min_row_styled.drop_duplicates(inplace=True)
                 st.dataframe(min_row_styled)
                 
                 # Display the filtered data table
