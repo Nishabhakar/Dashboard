@@ -48,7 +48,7 @@ def upload_data():
 
 
                 # Display the minimum price row with specified column styles
-                min_row = filtered_df.loc[filtered_df['Price in USD'] == min_price, ["Country", "Network", "Price in USD", "Service_Provider"]]
+                min_row = filtered_df.loc[filtered_df['Price in USD'] == min_price, ["Country", "Network", "Price in USD", "Service Provider"]]
 
                 min_row_styled = min_row.style.apply(lambda x: ['background-color: black; color: white'] * len(x), axis=0)
                 st.header("Minimum price in USD")
