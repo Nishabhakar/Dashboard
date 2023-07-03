@@ -2,6 +2,7 @@
 # import pandas as pd
 # import streamlit as st
 # import io
+# pip install openpyxl
 
 # st.set_page_config(page_title="Data", page_icon=":bar_chart:", layout="wide")
 
