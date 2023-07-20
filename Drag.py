@@ -83,16 +83,26 @@ def upload_data():
             st.header("Minimum price in USD in all Countries")
             st.dataframe(min_default_styled)
 
+            # Download filtered data as Excel
+            output_file = io.BytesIO()
+            min_default.to_excel(output_file, index=False, header=True)
+            output_file.seek(0)
+            b64 = base64.b64encode(output_file.read()).decode()
+            href = f'<a href="data:application/octet-stream;base64,{b64}" download="min_data.xlsx">Download min_Data</a>'
+            st.markdown(href, unsafe_allow_html=True)
+
+            st.success("Data is ready for download.")
+
             max_default = merged_df.loc[merged_df.groupby('Country')['Price in USD'].idxmax()]
             max_default = max_default.sort_values(by='Price in USD')
 
-            max_default_styled = min_default.style.apply(lambda x: ['background-color: black; color: white'] * len(x), axis=0)
+            max_default_styled = max_default.style.apply(lambda x: ['background-color: black; color: white'] * len(x), axis=0)
             st.header("Maximum price in USD in all Countries")
             st.dataframe(max_default_styled)
 
             # Download filtered data as Excel
             output_file = io.BytesIO()
-            min_default.to_excel(output_file, index=False, header=True)
+            max_default.to_excel(output_file, index=False, header=True)
             output_file.seek(0)
             b64 = base64.b64encode(output_file.read()).decode()
             href = f'<a href="data:application/octet-stream;base64,{b64}" download="min_data.xlsx">Download min_Data</a>'
