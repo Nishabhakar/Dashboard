@@ -66,8 +66,13 @@ def upload_data():
                 # Display the minimum price rows with specified column styles
                 min_row = filtered_df.loc[filtered_df['Price in USD'] == min_price, ["Country", "Network", "Price in USD", "Service Provider"]]
                 min_rows_styled = min_row.style.apply(lambda x: ['background-color: black; color: white'] * len(x), axis=0)
-                st.header("Minimum price in USD by Country")
+                st.header("Minimum price in USD by Country amoung filtered data")
                 st.dataframe(min_rows_styled)
+
+                max_row = filtered_df.loc[filtered_df['Price in USD'] == min_price, ["Country", "Network", "Price in USD", "Service Provider"]]
+                max_rows_styled = max_row.style.apply(lambda x: ['background-color: black; color: white'] * len(x), axis=0)
+                st.header("Maximum price in USD by Country amoung filtered data")
+                st.dataframe(max_rows_styled)
             
                 
             # Get the rows with the minimum price for each country
@@ -77,6 +82,13 @@ def upload_data():
             min_default_styled = min_default.style.apply(lambda x: ['background-color: black; color: white'] * len(x), axis=0)
             st.header("Minimum price in USD in all Countries")
             st.dataframe(min_default_styled)
+
+            max_default = merged_df.loc[merged_df.groupby('Country')['Price in USD'].idxmax()]
+            max_default = max_default.sort_values(by='Price in USD')
+
+            max_default_styled = min_default.style.apply(lambda x: ['background-color: black; color: white'] * len(x), axis=0)
+            st.header("Maximum price in USD in all Countries")
+            st.dataframe(max_default_styled)
 
             # Download filtered data as Excel
             output_file = io.BytesIO()
@@ -110,3 +122,4 @@ def upload_data():
 if __name__ == '__main__':
     st.title("Dashboard of Multiple Excel Sheets")
     upload_data()
+
