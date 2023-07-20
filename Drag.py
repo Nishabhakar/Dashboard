@@ -105,7 +105,7 @@ def upload_data():
             max_default.to_excel(output_file, index=False, header=True)
             output_file.seek(0)
             b64 = base64.b64encode(output_file.read()).decode()
-            href = f'<a href="data:application/octet-stream;base64,{b64}" download="min_data.xlsx">Download min_Data</a>'
+            href = f'<a href="data:application/octet-stream;base64,{b64}" download="max_data.xlsx">Download max_Data</a>'
             st.markdown(href, unsafe_allow_html=True)
 
             st.success("Data is ready for download.")
